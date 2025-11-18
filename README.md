@@ -1,113 +1,58 @@
-GCP Cloud Cost Analyzer and Idle VM Auto-Shutdown
+# 🌥️ GCP Cloud Cost Analyzer & Idle VM Auto-Shutdown
 
-This project is a fully automated cloud cost-optimization system built using Google Cloud Platform (GCP). It analyzes virtual machine usage, calculates daily cloud costs, identifies idle resources, and automatically shuts down underutilized VMs. The solution uses serverless components, making it efficient, scalable, and ideal for DevOps automation.
+This project is a fully automated cloud cost-optimization system built on **Google Cloud Platform (GCP)**. It analyzes VM usage, calculates daily spending, identifies idle resources, and automatically shuts down underutilized virtual machines. The solution uses a 100 percent serverless architecture designed for efficiency, scalability, and clean DevOps automation.
 
-🚀 Project Overview
+## 🚀 Project Overview
 
-The system is built with two Cloud Functions:
+The system is powered by **two Google Cloud Functions** working together:
 
-1. Cost Analyzer Function
+### 🔍 Cost Analyzer Function  
+- Reads Billing Export data from BigQuery  
+- Lists active Compute Engine VMs across all zones  
+- Fetches CPU utilization from Cloud Monitoring  
+- Calculates daily cost (actual or estimated)  
+- Classifies VMs as **Active / Low-Usage / Idle**  
+- Sends an email report using SendGrid  
+- Helps track unnecessary cloud spending each day  
 
-Reads Billing Export data from BigQuery
-
-Lists all running Compute Engine VMs
-
-Fetches CPU metrics using Cloud Monitoring
-
-Calculates or estimates 24-hour VM cost
-
-Classifies VMs as Active, Low-Usage, or Idle
-
-Sends a daily email report using SendGrid
-
-2. Idle VM Auto-Shutdown Function
-
-Checks CPU utilization across all VMs
-
-Identifies idle VMs (CPU usage < 5 percent)
-
-Automatically stops VMs labeled with:
+### 📴 Idle VM Auto-Shutdown Function  
+- Checks CPU usage from the past 1–12 hours  
+- Detects idle VMs (CPU below 5 percent)  
+- Automatically shuts down only VMs labeled:  
 
 auto-shutdown=true
 
+- Supports **DRY_RUN mode** for safe testing  
+- Logs all shutdown actions to Cloud Logging  
 
-Logs shutdown events
+Both functions run automatically using **Cloud Scheduler**, making the system completely hands-free.
 
-Supports DRY_RUN mode for safe testing
+## 🧰 Tech Stack  
+- Google Cloud Functions (Python)  
+- Cloud Scheduler  
+- Cloud Billing Export → BigQuery  
+- Compute Engine API  
+- Cloud Monitoring API  
+- SendGrid Email API  
+- IAM Roles  
 
-Both functions run automatically using Cloud Scheduler, creating a fully hands-off system.
+## 🌟 Features  
+- Automated VM usage analysis  
+- Daily email cost reports  
+- Idle VM detection  
+- Auto shutdown of unused instances  
+- Label-based safety control  
+- Cross-zone support  
+- Zero-maintenance serverless design  
 
-🧰 Tech Stack
+## 📸 Demo Outputs (add screenshots)  
+- Daily cost report email  
+- Idle VM shutdown log  
+- Curl test output  
+- Cloud Logging entries  
 
-Google Cloud Functions (Python)
-
-Cloud Scheduler
-
-Compute Engine API
-
-Cloud Monitoring API
-
-BigQuery Billing Export
-
-SendGrid Email API
-
-IAM for secure permissions
-
-📌 Features
-
-Automated VM cost analysis
-
-Daily email reports
-
-Idle VM detection
-
-Auto shutdown with safety labels
-
-Works across all zones
-
-Low operational cost (serverless)
-
-Easy to deploy and maintain
-
-🛠️ Architecture Flow
-
-Cloud Scheduler triggers functions daily
-
-Cost Analyzer collects usage + cost
-
-Email is sent using SendGrid
-
-Idle Shutdown checks CPU usage
-
-Idle VMs (with proper label) are stopped
-
-📂 Project Structure
-/cost_analyzer
-    main.py
-    requirements.txt
-
-/idle_shutdown
-    main.py
-    requirements.txt
-
-README.md
-
-📸 Demo Outputs
-
-Daily Email Cost Report
-
-Idle VM Auto-Shutdown Log
-
-Curl testing outputs
-
-(You can add screenshots of your email and Cloud Logs here.)
-
-📈 Future Improvements
-
-Auto-start based on schedules
-
-Slack/Teams notifications
-
-Cost forecasting
-
-Dashboard visualization in Looker Studio
+## 📈 Future Improvements  
+- Slack or Teams notifications  
+- Auto-start schedules  
+- Cost forecasting  
+- Looker Studio dashboard  
