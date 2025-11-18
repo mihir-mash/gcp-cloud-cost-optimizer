@@ -47,7 +47,7 @@ Both functions run automatically using **Cloud Scheduler**, making the system co
 
 ## 📸 Demo Video 
 Watch the full project demonstration here:  
-👉 **[Click to watch the Demo Video]([https://drive.google.com/file/d/12345/view?usp=sharing](https://drive.google.com/file/d/1i9B2g6P0YyGIL3N0M6xbCGEmLy6g98DG/view?usp=sharing))**  
+👉 **[Click to watch the Demo Video](https://drive.google.com/file/d/1i9B2g6P0YyGIL3N0M6xbCGEmLy6g98DG/view?usp=sharing)**  
 
 ## 📈 Future Improvements  
 - Slack or Teams notifications  
